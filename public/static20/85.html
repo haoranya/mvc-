@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+        
+<a href="/blog/index">主页</a>
+<a href="/blog/blog">列表搜索</a>
+    <a href="/user/logout">退出</a>
+    
+        <p>发布时间:2009-08-29 04:05:42</p>
+           
+            <h1>扳笔捂陷某呢冗邢叹漂乓娄劝坛容烂棋壳燎遁特侥柬魔败碱糯扯室细党品仍闻淀不豹讲贡哄兔侠劫狄层快沪芳慨囱</h1>
+            <p id="see_num"></p>
+            <h4>扳笔捂陷某呢冗邢叹漂乓娄劝坛容烂棋壳燎遁特侥柬魔败碱糯扯室细党品仍闻淀不豹讲贡哄兔侠劫狄层快沪芳慨囱</h4>
+        <p>加油加油加油哦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>            
+</body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+
+    var  id = "85";
+
+    var url = "/text/text?id="+id;
+
+    // alert(url);
+
+    $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+
+            
+
+            $("#see_num").html(data);
+
+        }
+    })
+
+
+</script>

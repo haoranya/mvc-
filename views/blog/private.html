@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .conment-list {
+
+            width: 100%;
+
+            height: 100px;
+
+            border: 1px solid skyblue;
+
+            margin: 10px;
+
+            padding-top: 40px;
+
+            padding: 20px;
+
+            font-size: 14px;
+
+
+        }
+
+        .conment-list .left {
+
+            float: left;
+
+            width: 10%;
+
+            text-align: center;
+
+            margin-right: 15px;
+
+        }
+
+        .conment-list .right {
+
+            width: 80%;
+
+            float: left;
+
+        }
+
+        .conment-list .right .date {
+
+            text-align: right;
+
+            margin-top: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="menu"></div>
+    <p>发布时间:
+        <?=$v['created_at']?>
+    </p>
+
+    <h1>
+        <?=$v['title']?>
+    </h1>
+    <p id="see_num"></p>
+
+    <h4>
+        <?=$v['content']?>
+    </h4>
+
+    <div style="border:1px solid red; padding-bottom:20px;">
+
+        <p style="width: 100%; height: 20px;background-color:gray;margin:0;"></p>
+
+        <img style="width: 50px;" src="/images/0.jpg" alt="" id="img">
+
+        <p style="width: 100%;height: 2px;background-color:skyblue;margin-top:0;"></p>
+
+        <p id="goods"></p>
+
+
+    </div>
+    <div id="conment_app">
+
+        <!-- {{a}} -->
+        <div class="conment-list" v-for="(v,k) in comments">
+            <div class="left">
+
+                <img :src="v.face" alt="" width="50" height="50">
+
+                <P>{{v.email}}</P>
+
+            </div>
+
+            <div class="right">
+
+                <div clas="con">{{v.content}}</div>
+
+                <div class="date">
+
+                    {{v.created_at}}
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="conment">
+
+
+
+            <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
+
+            <button @click="submit">提交</button>
+
+
+
+
+        </div>
+    </div>
+    <?=view("common.footer")?>
+
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    // 更新年浏览量并获取登录状态
+    var id = "<?=$v['id']?>";
+
+    var url = "/text/text?id=" + id;
+
+    // alert(url);
+
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+
+            $("#see_num").html(data.value);
+
+            if (data.email == '') {
+
+                var html = '<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/login">登录</a><a href="/text/register">注册</a>';
+
+            } else {
+
+                var html = "登录者" + data.email + "<img style='width: 50px;height: 50px;border-radius: 50%; border:1px solid red; vertical-align: middle;' src='/<?=$_SESSION['face']?>'>" + "用户余额:" + data.money + '<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/logout">退出</a><a href="/blog/create">日志发布</a>';
+
+            }
+
+            $("#menu").html(html);
+
+        }
+    })
+
+    //点赞功能
+    var img = $("#img");
+
+    var url = "/blog/agreement?id=" + id;
+
+    img.click(function () {
+
+        $.ajax({
+
+            type: 'GET',
+
+            url: url,
+
+            dataType: 'json',
+
+            success: function (data) {
+
+                if (data.status_code == 403) {
+
+                    alert("已经点击过了");
+
+                } else {
+
+                    alert("感谢参与");
+
+                }
+
+            }
+
+        })
+
+    })
+
+    //获取点赞的用户信息
+    var URL = "/blog/hit?id=" + id;
+    $.ajax({
+        type: "GET",
+        url: URL,
+        dataType: "json",
+        success: function (data) {
+
+            var html = '';
+
+
+
+            for (var i = 0; i < data.data.length; i++) {
+
+
+
+                var face = data.data[i].face ? data.data[i].face : "/images/0.jpg";
+
+
+
+                var email = data.data[i].email;
+
+
+
+                html += '<img style="width: 50px;border-radius:50%;" src="/' + face + '" title="' + email + '" alt=""  >';
+
+            }
+
+
+
+
+            $("#goods").append(html);
+        }
+
+    });
+
+    new Vue({
+        //挂载
+        el: "#conment_app",
+
+        //定义数据
+
+        data: {
+
+            content: '',
+
+            blog_id: id,
+
+            comments: [
+
+                {
+
+                    email: '123456@qq.com',
+
+                    face: "/images/0.jpg",
+
+                    created_at: '2018-9-18 10:00',
+
+                    content: '内容',
+
+                },
+            ],
+
+            a: '',
+        },
+
+        //钩子函数
+
+        created: function () {
+
+            axios.get("/conment/get_conments?blog_id=" + id).then(res => {
+
+                if (res.data.status_code == 200) {
+
+                    $data = res.data.data;
+
+                    this.comments = $data;
+
+                }else{
+
+                    alert("出问题了");
+
+                }
+
+            })
+
+        },
+
+        //定义函数
+
+        methods: {
+
+            submit: function () {
+
+                //执行ajax
+
+                axios.post("/conment/conments", {
+
+                    content: this.content,
+
+                    blog_id: this.blog_id,
+
+                }).then(res => {
+
+                    $data = res.data;
+
+                    if ($data.status_code == 200) {
+
+                        this.comments.unshift(
+
+                            {
+                                email: $data.data.email,
+
+                                face: $data.data.face,
+
+                                created_at: $data.data.created_at,
+
+                                content: $data.data.content,
+
+                            }
+
+                        )
+
+                    } else {
+
+                        alert("发表失败");
+
+                    }
+
+                })
+
+            }
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+        
+<a href="/blog/index">主页</a>
+<a href="/blog/blog">列表搜索</a>
+    <a href="/user/logout">退出</a>
+    
+        <p>发布时间:2018-09-03 16:24:15</p>
+           
+            <h1>迸娩窗蓄换边署犊炬蛾秋赫澄颗喉闺肠隋媚体临唬赴奴澎聚煌磨械赶赐商串伍殿袜颠嚼弓碱筒柬加嚏糙毯壬姐沉灰</h1>
+            <p id="see_num"></p>
+            <h4>迸娩窗蓄换边署犊炬蛾秋赫澄颗喉闺肠隋媚体临唬赴奴澎聚煌磨械赶赐商串伍殿袜颠嚼弓碱筒柬加嚏糙毯壬姐沉灰</h4>
+        <p>加油加油加油哦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>            
+</body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+
+    var  id = "99";
+
+    var url = "/text/text?id="+id;
+
+    // alert(url);
+
+    $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+
+            
+
+            $("#see_num").html(data);
+
+        }
+    })
+
+
+</script>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>  
+        <?=view("common.nav")?>
+    <h1>设置头像</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        <?=csrf_field()?>
+        <div>
+
+            选择头像: <input type="file" name="files" id="img" >
+
+        </div>
+
+    </form>
+
+    <?=view("common.footer")?>;
+    
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    //分割文件，一块一块上传
+    var img = document.getElementById("img");
+
+    img.onchange = function(){
+
+        //获取第一张图片
+
+        var img1 = this.files[0];
+
+        //给这张图片一个唯一的标识
+
+        var name = "<?=$_SESSION['id']?>";
+
+        //获取这张图片的尺寸
+
+        var fileSize =  img1.size;
+ 
+        //设置每块的尺寸
+
+        var perSize = 4096;
+
+        //获取总数
+
+        var count = Math.ceil(fileSize/perSize);
+
+        //循环上传
+
+        for(var i = 0; i<count; i++){
+
+        //根据每块大小分割文件来ajax上传
+
+        var perImg = img1.slice(i*perSize,i*perSize+perSize);
+
+        //模拟一个表单，保存图片资源,首先创造FormData对象
+
+        var f = new FormData();
+
+        //保存资源到表单对象
+
+        f.append('img',perImg);//图片数据
+
+        f.append("count",count);//资源数量
+
+        f.append("i",i);//当前是第几个
+
+        f.append('size', perSize)  // 每块尺寸
+
+        f.append("name",name);//资源的标识
+        //上传服务器
+
+        $.ajax({
+
+            type:"POST",
+            url: "/face/per_upload",
+            data:f,
+            contentType:false,//当ajax一些特殊数据的时候如图片，需要添加此项
+            processData:false,//当ajax一些特殊数据的时候如图片，需要添加此项
+            success:function(data){
+
+
+
+            }
+
+
+        })
+
+        
+
+        }
+
+    }
+
+</script>

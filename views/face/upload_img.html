@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>  
+        <?=view("common.nav")?>
+    <h1>设置头像</h1>
+    <form action="/face/upload_img" method="post" enctype="multipart/form-data">
+
+        <div>
+            选择头像: <input type="file" name="file[]"  >
+        </div>
+        
+         <div>
+            选择头像: <input type="file" name="file[]"  >
+        </div>
+
+         <div>
+            选择头像: <input type="file" name="file[]"  >
+        </div>
+
+
+        <div>
+
+           上传头像: <input type="submit" value="上传">
+
+        </div>
+
+    </form>
+
+    <?=view("common.footer")?>;
+    
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+      
+        <div id="menu"></div>
+        <p>发布时间:2018-09-14 20:06:30</p>
+           
+            <h1>搭举炯颂竞片伯陀逞歉令唉幌违灌哦喉槐女聊卫陡祟泼镐孝巫恋稳倍畦靶棉吴师扭姬检加墟汹从桅焚峡柔链查儒睫纯帘劳瞥病涂盛斤挥痢泉牵男邓伙墟怠母犊辛焙椒歧久蜕雌海浚统窟互户棵募揽退去娥堂晦仓拐汕</h1>
+            <p id="see_num"></p>
+            
+            <h4><p>搭举炯颂竞片伯陀逞歉令唉幌违灌哦喉槐女聊卫陡祟泼镐孝巫恋稳倍畦靶棉吴师扭姬检加墟汹从桅焚峡柔链查儒睫纯帘劳瞥病涂盛斤挥痢泉牵男邓伙墟怠母犊辛焙椒歧久蜕雌海浚统窟互户棵募揽退去娥堂晦仓拐汕</p></h4>
+
+            <div style="border:1px solid red; padding-bottom:20px;">
+
+            <p style="width: 100%; height: 20px;background-color:gray;margin:0;"></p>
+
+            <img style="width: 50px;" src="/images/0.jpg" alt="" id="img">
+
+            <p style="width: 100%;height: 2px;background-color:skyblue;margin-top:0;"></p>
+
+            <p id="goods"></p>
+          
+
+           </div>
+        <p>加油加油加油哦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>            
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    // 更新年浏览量并获取登录状态
+    var  id = "74";
+
+    var url = "/text/text?id="+id;
+
+    // alert(url);
+
+    $.ajax({
+        type:'GET',
+        url:url,
+        dataType:'json',
+        success:function(data){
+
+            $("#see_num").html(data.value);
+
+            if(data.email==''){
+
+                var html = '<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/login">登录</a><a href="/text/register">注册</a>';
+
+            }else{
+
+                var html = "登录者"+data.email+"<img style='width: 50px;height: 50px;border-radius: 50%; border:1px solid red; vertical-align: middle;' src='/upload/face/20180914/165ee8b4ea73a1d28f04cefb4f110921..jpg'>"+"用户余额:"+data.money+'<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/logout">退出</a><a href="/blog/create">日志发布</a>';
+
+            }
+
+            $("#menu").html(html);
+
+        }
+    })
+
+    //点赞功能
+    var img = $("#img");
+
+    var url = "/blog/agreement?id="+id;
+
+    img.click(function(){
+
+        $.ajax({
+
+            type:'GET',
+
+            url:url,
+
+            dataType:'json',
+
+            success:function(data){
+
+                 if(data.status_code==403){
+
+                    alert("已经点击过了");
+
+                 }else{
+
+                    alert("感谢参与");
+
+                 }
+
+            }
+
+        })
+
+    })
+
+    //获取点赞的用户信息
+    var URL = "/blog/hit?id="+id;
+    $.ajax({
+        type:"GET",
+        url:URL,
+        dataType:"json",
+        success:function(data){
+        
+            var html='' ;
+
+           
+
+            for(var i = 0; i<data.data.length;i++){
+
+                
+
+                var face = data.data[i].face?data.data[i].face:"/images/0.jpg";
+
+             
+
+                var email = data.data[i].email;
+
+               
+
+                html+='<img style="width: 50px;border-radius:50%;" src="/'+face+'" title="'+email+'" alt=""  >';
+
+            }
+
+           
+
+               
+                $("#goods").append(html);
+        }
+
+    })
+
+
+
+
+
+</script>

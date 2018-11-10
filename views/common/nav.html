@@ -1,0 +1,63 @@
+<script src="/simditor-2.3.6/scripts/jquery.min.js"></script>
+<?php if(isset($_SESSION['_MESS_'])):?>
+   <div id="div" style="color:blueviolet;background-color: aqua;display: block">
+
+    <?=$_SESSION['_MESS_']?>
+
+   </div>
+<?php unset($_SESSION['_MESS_'])?>
+<script>
+
+    var time = 5;
+
+    var div = document.getElementById("div");
+
+    var si = setInterval(function(){
+        
+        time--;
+
+        if(time==0){
+
+            div.style.display='none';
+
+            clearInterval(si);  
+
+        }
+
+    },1000)
+
+</script>
+<?php endif;?>
+<a href="/blog/index">主页</a>
+<a href="/blog/blog">列表搜索</a>
+<?php if(isset($_SESSION['id'])){?>
+    <a href="/user/charge">充值</a>
+    <a href="/user/logout">退出</a>
+    <a href="/blog/create">日志发布</a>
+    <a href="/user/charge_search">订单搜索</a>
+    <a href="/face/big_file">大文件上传</a>
+    <a href="/face/more_img">相册</a>
+    <a href="/face/myself">个人中心</a>
+    <a href="/Red/redbag">抢红包</a>
+    <a href="/blog/excel">最新日志20条生成excel</a>
+           <?=$_SESSION['email']?>
+    <img style="width: 50px;height: 50px;border-radius: 50%; border:1px solid red; vertical-align: middle;" src="<?=$_SESSION['face']?>" alt="">
+     余额为:<span id="new_money"><?=$_SESSION["money"]?></span>
+
+        <input id="update_money" type="submit" value="更新余额">
+
+      <script>
+     
+         $("#update_money").click(function(){
+
+            $("#new_money").load("/user/update_money");
+
+         })
+
+     </script>
+    
+    
+<?php }else{?>
+    <a href="/user/login">登录</a>
+    <a href="/text/register">注册</a>
+<?php }?>

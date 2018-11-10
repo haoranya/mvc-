@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .choose {
+
+            color: #f00;
+
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <?=view("common.nav")?>
+        <h1>日志列表</h1>
+
+
+        <form align='center'>
+            关键字:
+            <input type="text" name="keyword" id="" value="<?php if(isset($_GET['keyword']))echo $_GET['keyword']?>"> 开始日期：
+            <input type="text" name="start" id="" value="<?php if(isset($_GET['start']))echo $_GET['start']?>"> 结束日期：
+            <input type="text" name="end" id="" value="<?php if(isset($_GET['end']))echo $_GET['end']?>"> 是否显示 ：
+            <input type="radio" name="is_show" value="" <?php if(@$_GET[ 'is_show']=='' || !isset($_GET[ 'is_show'])) echo 'checked'
+                ?> > 全部
+                不显示 <input type="radio" name="is_show" value="0" <?php if(@$_GET[ 'is_show']=='0' ) echo 'checked' ?> > 
+                显示  <input type="radio" name="is_show" value="1" <?php if(@$_GET[ 'is_show']=='1' ) echo 'checked' ?> > 
+            <input type="submit" value="搜索">
+        </form>
+
+        <br>
+
+        <table border=1 align="center">
+
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>是否显示</th>
+                <th>
+                    <a href="?num=asc<?=getparams()?>">⬆</a>浏览量
+                    <a href="?num=desc<?=getparams()?>">⬇</a>
+                </th>
+                <th>
+                    <a href="?show=asc<?=getparams()?>">⬆</a>创建日期
+                    <a href="?show=desc<?=getparams()?>">⬇</a>
+                </th>
+                <th>操作</th>
+            </tr>
+            <?php foreach($blogs as $v): ?>
+            <tr height=60px;>
+                <th>
+                    <?=$v['id'] ?>
+                </th>
+                <th>
+                    <?php if($v['is_show']=='1'){?>
+                    <a href="/contents/<?=$v['id'] ?>.html" target="_blank">
+                        <?=$v['title'] ?>
+                    </a>
+                    <?php }else{?>
+                        <a href="/blog/private?id=<?=$v['id'] ?>">
+                            <?=$v['title'] ?>
+                        </a>
+                    <?php }?>
+                </th>
+                <?php if($v['is_show']=='0'){ ?>
+                <th>不显示</th>
+                <?php }else{ ?>
+                <th>显示</th>
+                <?php } ?>
+                <th>
+                    <?=$v['see_num'] ?>
+                </th>
+                <th>
+                    <?=$v['created_at']?>
+                </th>
+                <th>
+                    <button onclick="del(this)" name="<?=$v['id']?>">删除</button>
+                    <form action="/blog/edit" method="post">
+                        <?=csrf_field()?>
+                        <input type="hidden" name="id" value="<?=$v['id']?>">
+                        <input type="submit" value="修改">
+                    </form>
+                </th>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?=$btn ?>
+
+            <?=view("common.footer")?>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script>
+
+        function del(e) { 
+
+            $.post("/blog/delete", { _token: "<?=csrf()?>", id: $(e).attr("name") }, function (data) {
+
+                if(data*1){
+
+                   location.href="/blog/href";
+                    
+                }
+
+            });
+
+
+        }
+
+
+
+  
+
+
+
+
+
+
+
+</script>

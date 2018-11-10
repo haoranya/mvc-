@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+        <?=view("common.nav")?>
+     
+     <table border=1>
+        
+        <?php foreach($data20 as $v):?>
+        <tr height=60px;>
+            <th width=50px;><?=$v['id']?></th>
+            <th><a target="_blank" href="/static20/<?=$v['id']?>.html"><?=$v['title']?></a></th>
+            <th><?=$v['is_show']?></th>
+            <th><?=$v['created_at']?></th>
+            <th><?=$v['see_num']?></th>
+        </tr>
+        <?php endforeach;?>
+    
+     </table>
+        <h1>活跃用户</h1>
+        <div>
+            <?php foreach($users as $v):?>
+            
+             
+            <img style="width: 50px;" src="<?= $v->face ? $v->face : '/upload/image/big.png' ?>" alt="" title="<?=$v->email?>">
+
+               
+            <?php endforeach;?>
+        </div>
+
+     <?=view("common.footer")?>
+     
+</body>
+</html>
+<script>
+
+    
+
+
+
+</script>

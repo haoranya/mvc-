@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .choose {
+
+            color: #f00;
+
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <?=view("common.nav")?>
+        <h1>订单列表</h1>
+
+        <form align='center'>
+            
+            开始日期：
+            <input type="text" name="create" id="" value="<?php if(isset($_GET['create']))echo $_GET['create']?>">
+            结束日期：
+            <input type="text" name="pay_time" id="" value="<?php if(isset($_GET['pay_time']))echo $_GET['pay_time']?>"> 
+            是否显示 ：
+            <input type="radio" name="state" value="" <?php if(@$_GET[ 'state']=='' || !isset($_GET[ 'state'])) echo 'checked'
+                ?> > 全部
+                未支付 <input type="radio" name="state" value="0" <?php if(@$_GET[ 'state']=='0' ) echo 'checked' ?> > 
+                已支付  <input type="radio" name="state" value="1" <?php if(@$_GET[ 'state']=='1' ) echo 'checked' ?> > 
+                已退款  <input type="radio" name="state" value="2" <?php if(@$_GET[ 'state']=='2' ) echo 'checked' ?> > 
+            <input type="submit" value="搜索">
+        </form>
+
+        <br>
+
+        <table border=1 align="center">
+
+            <tr>
+                <th>ID</th>
+                <th>订单号</th>
+                <th>支付状态</th>
+                <th>
+                    <a href="?pay_time=asc<?=getparams()?>">⬆</a>下单时间
+                    <a href="?pay_time=desc<?=getparams()?>">⬇</a>
+                </th>
+                <th>操作</th>
+            </tr>
+            <?php foreach($order as $v): ?>
+            <tr height=60px;>
+                <th>
+                   <?=$v['id'] ?> 
+                </th>
+                <th>
+                    <?=$v['sn']?>
+                </th>
+                   <?php if($v['state']=='0'){ ?>
+                        <th>未支付</th>
+                   <?php }else if($v['state']=='1') { ?>
+                         <th>支付</th>
+                   <?php }else { ?>
+                         <th>退款</th>
+                   <?php } ?>
+                <th>
+                    <?=$v['created_at']?>
+                </th>
+                <th>
+                    <button onclick="del(this)" name="<?=$v['id']?>">删除</button>
+                    <form action="/alipay/pay" method="post">
+                        <?=csrf_field()?>
+                        <input type="hidden" name="sn" value="<?=$v['sn']?>">
+                        <?php if($v['state']==1){?>
+                            <input type="submit" value="去退款">
+                        <?php }else { ?>
+                        <input type="submit" value="去支付">
+                        <?php } ?>
+                    </form>
+
+                    <form action="/Wxpay/pay" method="post" target="_blank">
+                        <?=csrf_field()?>
+                        <input type="hidden" name="sn" value="<?=$v['sn']?>">
+                        <?php if($v['state']==1){?>
+                            <input type="submit" value="去微信退款">
+                        <?php }else { ?>
+                        <input type="submit" value="去微信支付">
+                        <?php } ?>
+                    </form>
+
+                </th>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?=$btn ?>
+
+            <?=view("common.footer")?>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script>
+
+        function del(e) { 
+
+            $.post("/user/delete", { _token: "<?=csrf()?>", id: $(e).attr("name") }, function (data) {
+
+                if(data*1){
+
+                   location.href="/user/charge_search";
+                    
+                }
+
+            });
+
+
+        }
+
+
+
+  
+
+
+
+
+
+
+
+</script>

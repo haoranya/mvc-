@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+        
+        <div id="menu"></div>
+        <p>发布时间:2018-09-07 09:04:37</p>
+           
+            <h1>鲜瀑何红黄狮故锣蓄擅叙氯廉省卧驰贿堕泪捂抱昆城蕾钢腻扛克蓝窜涵绿毫连菇括录道悼惕沙沏谈苍江强拷无顷霞亲妙胁彩板奠撬</h1>   
+            <p id="see_num"></p>
+            
+            <h4>鲜瀑何红黄狮故锣蓄擅叙氯廉省卧驰贿堕泪捂抱昆城蕾钢腻扛克蓝窜涵绿毫连菇括录道悼惕沙沏谈苍江强拷无顷霞亲妙胁彩板奠撬</h4>
+            
+            <!-- <p><img style="width: 50px;" src="/images/0.jpg" alt="" id="img"></p> -->
+        <p  style="clear:both">加油加油加油哦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+</body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    // 更新年浏览量并获取登录状态
+    var  id = "195";
+
+    var url = "/text/text?id="+id;
+
+    // alert(url);
+
+    $.ajax({
+        type:'GET',
+        url:url,
+        dataType:'json',
+        success:function(data){
+
+            $("#see_num").html(data.value);
+
+            if(data.email==''){
+
+                var html = '<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/login">登录</a><a href="/text/register">注册</a>';
+
+            }else{
+
+                var html = "登录者"+data.email+'<a href="/blog/index">主页</a><a href="/blog/blog">列表搜索</a><a href="/user/logout">退出</a><a href="/blog/create">日志发布</a>';
+
+            }
+
+            $("#menu").html(html);
+
+        }
+    })
+
+
+</script>

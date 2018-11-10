@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页20</title>
+</head>
+<body>
+        
+<a href="/blog/index">主页</a>
+<a href="/blog/blog">列表搜索</a>
+    <a href="/user/logout">退出</a>
+    
+        <p>发布时间:2009-12-18 00:02:46</p>
+           
+            <h1>售救卷钢场围氨巩冀菠跺解时色啼狙夺绞薯皋春燃渤姐检涉坝铰澎焊汇姬甲丝缸崔芦随卤南静翰厦冈叭倘木群掇党</h1>
+            <p id="see_num"></p>
+            <h4>售救卷钢场围氨巩冀菠跺解时色啼狙夺绞薯皋春燃渤姐检涉坝铰澎焊汇姬甲丝缸崔芦随卤南静翰厦冈叭倘木群掇党</h4>
+        <p>加油加油加油哦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>            
+</body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+
+    var  id = "94";
+
+    var url = "/text/text?id="+id;
+
+    // alert(url);
+
+    $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+
+            
+
+            $("#see_num").html(data);
+
+        }
+    })
+
+
+</script>

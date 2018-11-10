@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        .choose{
+
+            color:#f00;
+
+            font-weight: bold;
+
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>日志列表</h1>
+
+
+     <form align='center'>
+        关键字: <input type="text" name="keyword" id="" value="">    
+        开始日期：<input type="text" name="start" id="" value="">
+        结束日期：<input type="text" name="end" id="" value=""> 
+        是否显示 ：
+        <input type="radio" name="is_show" value=""  checked > 全部
+        <input type="radio" name="is_show" value="0"  > 不显示
+        <input type="radio" name="is_show" value="1"  > 显示
+        <input type="submit" value="搜索">
+     </form>
+
+     <br>
+
+    <table border=1 align="center">
+
+       <tr>
+        <th>ID</th>
+        <th>标题</th>       
+        <th>是否显示</th>
+        <th><a href="?num=asc" >⬆</a>浏览量 <a href="?num=desc">⬇</a></th>
+        <th><a href="?show=asc">⬆</a>创建日期 <a href="?show=desc">⬇</a></th>
+        <th>操作</th>
+      </tr> 
+            <tr height=60px;>
+        <th>81</th>
+        <th>宪假购瓶丢肃峦颧无劝崔潍勘瓣宛藕尉畴画秦筐涩摩帅犀送冗斥苹礁度茅狙口裙瓤屏钙湿蒙其广订墒蜕廓哗耪染苍</th>
+                <th>显示</th>
+                <th>93</th>
+        <th>2009-02-14 01:26:38</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>18</th>
+        <th>毯硷袱徽露京啥怪扇首谩奋碌硅称瞥炬崩释跨颧恕软隶涪避淬对赋保堆板茨淳篓摹己驮百寥菇版剂匡手韩违朝铣臣</th>
+                <th>显示</th>
+                <th>38</th>
+        <th>2009-05-13 04:16:46</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>61</th>
+        <th>哪齐桔祭睛猎揪炭艘砷贝尾沉霞唉确屁购蜂垮猛介锈耍纳瓷爆稍憨廉裤艇双蛾额触揣写归禽般闺菩灿补啊蔚料豢隙</th>
+                <th>不显示</th>
+                <th>52</th>
+        <th>2009-05-27 09:22:51</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>89</th>
+        <th>幌券牌拾钠吻都衡馆韦佛坑瞳纪佩肥沟甫佩歌埃料韩鹤舞另茅猴芜顷垃说棉频己慧布杉枪洁道绢奥酬房驹店雇疆抗</th>
+                <th>显示</th>
+                <th>59</th>
+        <th>2009-07-31 02:23:41</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>80</th>
+        <th>点方疮惜据母疟狄哼嗜毛泼啃呕伍宽讨冯铃苦捕驹敛般篙粹鸿堆弓道斑单惟涡瓦恃铰苯哀驼黔菲岗南喇口慨硼物富</th>
+                <th>显示</th>
+                <th>48</th>
+        <th>2009-08-17 07:01:20</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>85</th>
+        <th>扳笔捂陷某呢冗邢叹漂乓娄劝坛容烂棋壳燎遁特侥柬魔败碱糯扯室细党品仍闻淀不豹讲贡哄兔侠劫狄层快沪芳慨囱</th>
+                <th>不显示</th>
+                <th>36</th>
+        <th>2009-08-29 04:05:42</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>21</th>
+        <th>棠贝呐颊典蕾洛拼吵镰曝恢似解汾韶吨闷歉澈懦沃潘侨背八差腾无头叙棠垦菏聘驹伪购罚遍撕膘蔫拣谈肥庆娘纷丢</th>
+                <th>显示</th>
+                <th>44</th>
+        <th>2009-09-05 00:37:17</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>57</th>
+        <th>仍协粮隶软卫负戎书伺滤县迹鳞扯合朴炊纶豆娘世藉洗汝混口贯漆稗桓筒绢色忿辖抢陷泵猩角线城颗碎嗡穿篙怕逻</th>
+                <th>显示</th>
+                <th>34</th>
+        <th>2009-10-04 23:50:14</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>6</th>
+        <th>赂全匡孔此救莲狮兜飘请取蹄佬送酮母贰凄祥码具疲硅泥锑串粮凶硕朵樊炊币香话该诚航勺窟毛童摄舍膏入畦汲摆</th>
+                <th>显示</th>
+                <th>14</th>
+        <th>2009-10-08 18:42:56</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>17</th>
+        <th>掀炒烯搽歼浦涵寂搁母份妈雌尖菠盖壕新廓概柯工擂驶堤拼倾僵祟顺粒蕾偶咖工佬疼孝陛淘蜕混倾肌查罐墩肺坪怠</th>
+                <th>不显示</th>
+                <th>79</th>
+        <th>2009-12-04 22:07:36</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>94</th>
+        <th>售救卷钢场围氨巩冀菠跺解时色啼狙夺绞薯皋春燃渤姐检涉坝铰澎焊汇姬甲丝缸崔芦随卤南静翰厦冈叭倘木群掇党</th>
+                <th>不显示</th>
+                <th>49</th>
+        <th>2009-12-18 00:02:46</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>10</th>
+        <th>纱叫充澄崩叹司合埔汇担画地前赏诡稗茄久拘究节纳灯疾啥堤浅梗摔烩潮盲辟无惕钉揩拢卷犬女疟识册剧辫挪迁饲</th>
+                <th>显示</th>
+                <th>89</th>
+        <th>2010-01-13 20:51:03</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>59</th>
+        <th>郊踩飞了蚀遍衅景设刃虏期尝毕钡溯鸵瘟杉坤枚烤谜徘羔悲煌芳兄暖矾仍畅扫速莫费埔起饯桐切伍赋舞搂尾危顷风</th>
+                <th>不显示</th>
+                <th>88</th>
+        <th>2010-01-15 21:39:31</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>77</th>
+        <th>粗疽庭匈念聊复噶蚂溃铃搁匈县挺解碉缴被唐诧堑翁慌湾坑弹拢粒酥竣肌咐盟吮梗狡庐对侗惹锭锋归活绿百累潞施</th>
+                <th>显示</th>
+                <th>73</th>
+        <th>2010-02-24 00:20:53</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+            <tr height=60px;>
+        <th>14</th>
+        <th>漂丝容夹澈匡嚎柔川穗举材列讹枢嘎储涉华镣媚校煽朵笺霓夺钡冯谋坛蹄袄桃裙忿巢琴滥谋顾挽屡化浓掠挟透携倪</th>
+                <th>显示</th>
+                <th>16</th>
+        <th>2010-02-25 13:57:47</th>
+        <th><a href="">删除</a> <a href="">修改</a></th>
+      </tr>
+      
+    </table>
+    <a class="choose" href='?page=1' > 1 </a><a  href='?page=2' > 2 </a><a  href='?page=3' > 3 </a><a  href='?page=4' > 4 </a><a  href='?page=5' > 5 </a><a  href='?page=6' > 6 </a><a  href='?page=7' > 7 </a></body>
+</html>

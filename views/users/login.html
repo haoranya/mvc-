@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <?=view("common.nav")?>
+    <h1>登录</h1>
+    <form action="/user/dologin" method="post">
+                <input type="hidden" name="_token" value="<?=csrf()?>">
+        邮件：<input type="text" name="email" id="">
+        密码：<input type="password" name="pwd" id="">
+        <input type="submit" value="登录">
+    </form>
+    <?=view("common.footer")?>
+</body>
+</html>
